@@ -17,18 +17,11 @@
         $url = $_POST['url'];
         $imgname = 'url.jpg';
         $analyze_img='analyze_img';
-        $Ans=$topic_id."-".$level_id.'.png';
-        $exam=$filepath.'exam/'.$Ans;
-        $Ans='exam/'.$Ans;
-        if(! file_exists($exam))
-        {
-            die(json_encode(array('result' => False)));
-        }
         if(getImg($url))
         {
-            $path='test_analyze.py ';
+            $path=$analyze_img."_".$topic_id."_".$level_id.".exe ";
             if(file_exists($path))
-                passthru($path.$Ans);
+                passthru($path.$imgname);
             else
             {
                 // echo "not_file_exists";

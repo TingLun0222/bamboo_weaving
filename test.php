@@ -16,19 +16,17 @@
         $filepath = 'C:/xampp/htdocs/';
         $url = $_POST['url'];
         $imgname = 'url.jpg';
-        $analyze_img='analyze_img';
-        $Ans=$topic_id."-".$level_id.'.png';
-        $exam=$filepath.'exam/'.$Ans;
-        $Ans='exam/'.$Ans;
+        $analyze_img='test_analyze.exe';
+        $Ans=$topic_id."-".$level_id.'.PNG';
+        $exam='exam/'.$Ans;
         if(! file_exists($exam))
         {
             die(json_encode(array('result' => False)));
         }
         if(getImg($url))
         {
-            $path='test_analyze.py ';
-            if(file_exists($path))
-                passthru($path.$Ans);
+            if(file_exists($analyze_img))
+                passthru($analyze_img.$exam);
             else
             {
                 // echo "not_file_exists";
@@ -62,8 +60,8 @@
             $query = "INSERT INTO return_json(game_id,json) VALUES($game_id ,'$ret')";
             $con = $pdo->query($query);
             echo json_encode(array('result' => True));
-            if(file_exists('./return_data.json'))
-                unlink('./return_data.json');
+            //if(file_exists('./return_data.json'))
+                //unlink('./return_data.json');
         }else
         {
             echo json_encode(array('result' => False));
